@@ -30,7 +30,6 @@ public class Teamwork implements ApplicationComponent {
     public static String IDE_NAME;
     public static String IDE_VERSION;
     public static BigDecimal lastTime = new BigDecimal(0);
-    public static BigDecimal timeout = new BigDecimal(60); // in seconds
     public static String lastFile = null;
     public static MessageBusConnection connection;
     private final int queueTimeoutSeconds = 10;
@@ -128,9 +127,9 @@ public class Teamwork implements ApplicationComponent {
 
     public static void checkForTimeout(BigDecimal time, TimeTrackingProject project)
     {
-        BigDecimal timeSinceLast = time.subtract(Teamwork.lastTime);
-        if (timeout.compareTo(timeSinceLast) == -1) {
-            Teamwork.lastTime = new BigDecimal(0);
+        BigDecimal timeSinceLast = time.subtract(project.lastUpdateTime);
+        if (FREQUENCY.compareTo(timeSinceLast) == -1) {
+            project.lastUpdateTime = new BigDecimal(0);
         }
     }
 
@@ -210,7 +209,6 @@ public class Teamwork implements ApplicationComponent {
             final TimeTrackingProject project = projectCollection.getProject(heartbeat.project);
             // add the current heartbeat to time
             project.totalTime = project.totalTime.add(heartbeat.timeSinceLast);
-            System.out.print("Time" + project.totalTime);
         }
 
 
