@@ -1,8 +1,5 @@
 import com.intellij.AppTopics;
 import com.intellij.ide.DataManager;
-import com.intellij.notification.Notification;
-import com.intellij.notification.NotificationType;
-import com.intellij.notification.Notifications;
 import com.intellij.openapi.actionSystem.DataContext;
 import com.intellij.openapi.actionSystem.DataKeys;
 import com.intellij.openapi.actionSystem.PlatformDataKeys;
@@ -140,7 +137,6 @@ public class Teamwork implements ApplicationComponent {
     public static void appendHeartbeat(BigDecimal time, String file, boolean isWrite) {
 
         final String project = Teamwork.getProjectName();
-
 
         ApplicationManager.getApplication().executeOnPooledThread(() -> {
             final TimeTrackingProject projectItem = projectCollection.getProject(project);
