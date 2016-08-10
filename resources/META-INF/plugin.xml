@@ -1,0 +1,48 @@
+<idea-plugin version="2">
+  <id>com.rocketfuel.teamwork.timetracking</id>
+  <name>Add Teamwork Time Tracking Support to Jetbrains Products</name>
+  <version>1.0</version>
+  <vendor email="support@yourcompany.com" url="http://www.yourcompany.com">YourCompany</vendor>
+
+  <description><![CDATA[
+      Enter short description for your plugin here.<br>
+      <em>most HTML tags may be used</em>
+    ]]></description>
+
+  <change-notes><![CDATA[
+      Add change notes here.<br>
+      <em>most HTML tags may be used</em>
+    ]]>
+  </change-notes>
+
+  <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/build_number_ranges.html for description -->
+  <idea-version since-build="141.0"/>
+
+  <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
+       on how to target different products -->
+  <!-- uncomment to enable plugin in all products
+  <depends>com.intellij.modules.lang</depends>
+  -->
+
+  <extensions defaultExtensionNs="com.intellij">
+    <!-- Add your extensions here -->
+  </extensions>
+
+  <actions>
+    <action id="diskread.ReadCurrentFile" class="ReadCurrentFile" text="Read current file from disk"
+            description="Reads the current file from disk and replaces it in the editor">
+      <add-to-group group-id="ToolsMenu" anchor="last"/>
+      <keyboard-shortcut keymap="$default" first-keystroke="ctrl meta alt R" second-keystroke="shift ctrl alt R"/>
+    </action>
+    <action id="org.rocketfuel.teamwork.timetracking" class="GetSessionTime" text="Get Current Session Time"
+            description="Get the current session time in a popup">
+      <add-to-group group-id="ToolsMenu" anchor="last"/>
+      <keyboard-shortcut keymap="$default" first-keystroke="shift ctrl meta alt T"/>
+    </action>
+  </actions>
+  <application-components>
+    <component>
+      <implementation-class>Teamwork</implementation-class>
+    </component>
+  </application-components>
+</idea-plugin>
